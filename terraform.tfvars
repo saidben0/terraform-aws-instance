@@ -1,5 +1,5 @@
 instance_type = "t3.micro"
-cidr_block = "207.229.130.177/32"
+cidr_block = "<cidr-block>/32"
 key_name = "sben_ec2_key"
 public_key = "<public_key>"
 availability_zone = "us-east-1a"
