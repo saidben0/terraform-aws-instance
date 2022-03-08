@@ -30,14 +30,17 @@ variable "ebs_volumes" {
   }))
   default = {
     data01 = {
-      device_name = "/dev/xvde"
+      device_name = "/dev/sda1"
       volume_size        = "8"
       volume_type        = "gp3"
     }
     data02 = {
-      device_name = "/dev/xvdf"
+      device_name = "/dev/xvde"
       volume_size        = "9"
       volume_type        = "gp3"
     }
   }
+}
+locals {
+  device_names = ([ for key, value in var.ebs_volumes: value.device_name ])
 }

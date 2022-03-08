@@ -6,12 +6,12 @@ availability_zone = "us-east-1a"
 
 ebs_volumes = {
   data01 = {
-    device_name = "/dev/xvde"
+    device_name = "/dev/sda1"
     volume_size        = "8"
     volume_type        = "gp3"
   }
   data02 = {
-    device_name = "/dev/xvdf"
+    device_name = "/dev/xvde"
     volume_size        = "9"
     volume_type        = "gp3"
   }

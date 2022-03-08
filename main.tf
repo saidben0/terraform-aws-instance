@@ -23,7 +23,10 @@ resource "aws_instance" "web" {
   availability_zone = var.availability_zone
   key_name = var.key_name
   security_groups = [ aws_security_group.allow_ssh.name ]
-  tags = {
+  user_data = templatefile("${path.module}/nvme-to-block-mapping.sh", {
+  devnames = join(" ", local.device_names)
+  })
+ tags = {
     Name = "sben_test"
   }
 }
@@ -76,3 +79,4 @@ data "aws_ami_ids" "sben_amis" {
     values = ["hvm"]
   }
 }
+
