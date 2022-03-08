@@ -2,13 +2,15 @@ data "aws_ami" "ubuntu" {
   most_recent = true
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["RHEL-8.4.0_HVM-*-x86_64-2-Hourly2-GP2*"]
+    #values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-  owners = ["099720109477"] # Canonical
+  owners = ["309956199498"]
+  #owners = ["099720109477"] # Canonical
 }
 
 resource "aws_key_pair" "ssh_key" {
@@ -64,10 +66,12 @@ resource "aws_security_group" "allow_ssh" {
 
 # Get ALL matching ami-ids
 data "aws_ami_ids" "sben_amis" {
-  owners = ["099720109477"]
+  owners = ["309956199498"]
+  #owners = ["099720109477"]
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["RHEL-8.4.0_HVM-*-x86_64-2-Hourly2-GP2*"]
+    #values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
   filter {
     name   = "virtualization-type"
