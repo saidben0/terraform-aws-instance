@@ -26,6 +26,17 @@ resource "aws_instance" "web" {
   }
 }
 
+resource "aws_volume_attachment" "this" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.this.id
+  instance_id = aws_instance.web.id
+}
+
+resource "aws_ebs_volume" "this" {
+  availability_zone = var.availability_zone
+  size              = 1
+}
+
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "Allow ssh inbound traffic"
