@@ -26,15 +26,17 @@ resource "aws_instance" "web" {
   }
 }
 
-resource "aws_volume_attachment" "this" {
-  device_name = "/dev/sdh"
-  volume_id   = aws_ebs_volume.this.id
-  instance_id = aws_instance.web.id
-}
-
 resource "aws_ebs_volume" "this" {
+  for_each = var.ebs_volumes
+  size = each.value["volume_size"]
+  type = each.value["volume_type"]
   availability_zone = var.availability_zone
-  size              = 1
+}
+resource "aws_volume_attachment" "this" {
+  for_each = var.ebs_volumes
+  device_name = each.value["device_name"]
+  instance_id = aws_instance.web.id
+  volume_id   = aws_ebs_volume.this[each.key].id
 }
 
 resource "aws_security_group" "allow_ssh" {
