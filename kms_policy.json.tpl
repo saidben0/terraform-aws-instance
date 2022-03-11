@@ -5,15 +5,15 @@
       {
         "Sid": "Enable IAM policies",
         "Effect": "Allow",
-        "Principal": {"AWS": "arn:aws:sts::${account_id}:assumed-role/Admin/saidben-Isengard"},
+        "Principal": {"AWS": "arn:aws:sts::${account_id}:assumed-role/Admin/<username>"},
         "Action": "kms:*",
         "Resource": "*"
       },
       {
         "Sid": "Allow access for Key Administrators",
         "Effect": "Allow",
-        "Principal": {"AWS": [ "arn:aws:iam::${account_id}:user/developer",
-          "arn:aws:sts::${account_id}:assumed-role/Admin/saidben-Isengard"
+        "Principal": {"AWS": [ "arn:aws:iam::${account_id}:user/<username>",
+          "arn:aws:sts::${account_id}:assumed-role/Admin/<username>"
         ]},
         "Action": [
           "kms:Create*",
@@ -37,9 +37,9 @@
         "Sid": "Allow use of the key",
         "Effect": "Allow",
         "Principal": {"AWS": [
-          "arn:aws:iam::${account_id}:user/developer",
+          "arn:aws:iam::${account_id}:user/<username>",
           "arn:aws:iam::${account_id}:root",
-          "arn:aws:sts::${account_id}:assumed-role/Admin/saidben-Isengard"
+          "arn:aws:sts::${account_id}:assumed-role/Admin/<username>"
         ]},
         "Action": [
           "kms:Encrypt",
@@ -54,9 +54,9 @@
         "Sid": "Allow attachment of persistent resources",
         "Effect": "Allow",
         "Principal": {"AWS": [
-          "arn:aws:iam::${account_id}:user/developer",
+          "arn:aws:iam::${account_id}:user/<user>>",
           "arn:aws:iam::${account_id}:root",
-          "arn:aws:sts::${account_id}:assumed-role/Admin/saidben-Isengard"
+          "arn:aws:sts::${account_id}:assumed-role/Admin/<user>"
         ]},
         "Action": [
           "kms:CreateGrant",
