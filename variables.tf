@@ -44,3 +44,39 @@ variable "ebs_volumes" {
 locals {
   device_names = ([ for key, value in var.ebs_volumes: value.device_name ])
 }
+
+###########################################################
+################### KMS ###################################
+###########################################################
+
+variable "kms_key_name" {
+  default = "sben_kms_key"
+}
+
+variable "account_id" {
+  default = "155185327318"
+}
+
+variable "key_spec" {
+  default = "SYMMETRIC_DEFAULT"
+}
+
+variable "enabled" {
+  default = true
+}
+
+variable "rotation_enabled" {
+  default = true
+}
+
+variable "user_arn" {
+  default ="arn:aws:iam::155185327318:user/kms_test"
+}
+
+variable "sben_user" {
+  default = "arn:aws:sts::155185327318:assumed-role/Admin/saidben-Isengard"
+}
+
+variable "kms_alias" {
+  default = "sben"
+}

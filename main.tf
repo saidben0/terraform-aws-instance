@@ -36,6 +36,8 @@ resource "aws_ebs_volume" "this" {
   size = each.value["volume_size"]
   type = each.value["volume_type"]
   availability_zone = var.availability_zone
+  encrypted = true
+  kms_key_id = aws_kms_key.sben_kms_key.arn
 }
 resource "aws_volume_attachment" "this" {
   for_each = var.ebs_volumes

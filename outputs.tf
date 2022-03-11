@@ -7,3 +7,11 @@ output "nvme-to-block-template" {
     devnames = join(" ", local.device_names)
   })
 }
+
+###################################################
+####################### KMS #######################
+###################################################
+
+output "kms_key_id" {
+  value = aws_kms_key.sben_kms_key.key_id
+}
